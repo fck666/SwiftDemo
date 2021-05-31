@@ -16,7 +16,7 @@ class ViewController: UITabBarController {
         tabBar.tintColor = UIColor.green
         
         addChildVC(childController: FirstViewController(), childTitle: "First", imageName: "tabbar_1", selectedImageName: "tabbar_selected_1")
-        addChildVC(childController: SecViewController(), childTitle: "Second", imageName: "tabbar_2", selectedImageName: "tabbar_selected_3")
+        addChildVC(childController: SecViewController(), childTitle: "Second", imageName: "tabbar_2", selectedImageName: "tabbar_selected_2")
         addChildVC(childController: ThirdViewController(), childTitle: "Third", imageName: "tabbar_3", selectedImageName: "tabbar_selected_3")
         // Do any additional setup after loading the view.
     }

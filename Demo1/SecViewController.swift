@@ -13,7 +13,7 @@ class SecViewController: UIViewController,UITableViewDelegate,UITableViewDataSou
         cell.textLabel?.text = datasource[indexPath.row]
         cell.textLabel?.textColor = UIColor.black
         cell.backgroundView?.backgroundColor = UIColor.blue
-        
+       
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -21,6 +21,34 @@ class SecViewController: UIViewController,UITableViewDelegate,UITableViewDataSou
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return datasource.count
+    }
+    // MARK: 滑动删除必须实现的方法
+    // 如果没实现则无法策划
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete{
+            datasource.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            tableView.reloadData()
+        }
+        print("删除\(indexPath.row)")
+    }
+    private func tableView(_ tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath)->Bool {
+        return true
+    }
+    // 侧滑删除
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+//        datasource.remove(at: indexPath.row)
+//        tableView.deleteRows(at: [indexPath], with: .fade)
+//        tableView.reloadData()
+        return UITableViewCell.EditingStyle.delete
+    }
+    // 设置侧滑的文字
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "删除"
+    }
+    func tableview(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath:IndexPath) {
+        
+        
     }
     @objc func tapped(mes : String){
         let des = MesViewController()

@@ -7,6 +7,7 @@
 
 import UIKit
 
+@available(iOS 14.0, *)
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

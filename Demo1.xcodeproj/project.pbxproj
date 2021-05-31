@@ -18,6 +18,8 @@
 		37571BA62660CC8C00330DF8 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37571BA52660CC8C00330DF8 /* FirstViewController.swift */; };
 		37571BA82660CCB600330DF8 /* SecViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37571BA72660CCB600330DF8 /* SecViewController.swift */; };
 		37571BAA2660CCD700330DF8 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37571BA92660CCD700330DF8 /* ThirdViewController.swift */; };
+		37A8276F2664DE7600B4EA75 /* NewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8276E2664DE7600B4EA75 /* NewViewController.swift */; };
+		37A827712664E4D700B4EA75 /* MesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A827702664E4D700B4EA75 /* MesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		37571BA52660CC8C00330DF8 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		37571BA72660CCB600330DF8 /* SecViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecViewController.swift; sourceTree = "<group>"; };
 		37571BA92660CCD700330DF8 /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
+		37A8276E2664DE7600B4EA75 /* NewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewViewController.swift; sourceTree = "<group>"; };
+		37A827702664E4D700B4EA75 /* MesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,8 @@
 				37571B772660BB0E00330DF8 /* SceneDelegate.swift */,
 				37571B792660BB0E00330DF8 /* ViewController.swift */,
 				37571BA52660CC8C00330DF8 /* FirstViewController.swift */,
+				37A8276E2664DE7600B4EA75 /* NewViewController.swift */,
+				37A827702664E4D700B4EA75 /* MesViewController.swift */,
 				37571BA72660CCB600330DF8 /* SecViewController.swift */,
 				37571BA92660CCD700330DF8 /* ThirdViewController.swift */,
 				37571B7B2660BB0E00330DF8 /* Main.storyboard */,
@@ -269,9 +275,11 @@
 			files = (
 				37571BA82660CCB600330DF8 /* SecViewController.swift in Sources */,
 				37571B7A2660BB0E00330DF8 /* ViewController.swift in Sources */,
+				37A8276F2664DE7600B4EA75 /* NewViewController.swift in Sources */,
 				37571B762660BB0E00330DF8 /* AppDelegate.swift in Sources */,
 				37571B782660BB0E00330DF8 /* SceneDelegate.swift in Sources */,
 				37571BAA2660CCD700330DF8 /* ThirdViewController.swift in Sources */,
+				37A827712664E4D700B4EA75 /* MesViewController.swift in Sources */,
 				37571BA62660CC8C00330DF8 /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

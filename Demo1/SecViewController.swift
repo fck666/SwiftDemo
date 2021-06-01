@@ -6,7 +6,7 @@
 //
 
 import UIKit
-@available(iOS 14.0, *)
+//@available(iOS 14.0, *)
 class RowViewController: UITableViewCell{
     static let identifierString = "GroupTableViewCell"
     private var ImageView = UIImageView()
@@ -37,7 +37,7 @@ class RowViewController: UITableViewCell{
     }
     
 }
-@available(iOS 14.0, *)
+//@available(iOS 14.0, *)
 class SecViewController: UIViewController{
     
    
@@ -86,7 +86,7 @@ class SecViewController: UIViewController{
     
 
 }
-@available(iOS 14.0, *)
+//@available(iOS 14.0, *)
 extension SecViewController :UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //        let cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: title) as? RowViewController

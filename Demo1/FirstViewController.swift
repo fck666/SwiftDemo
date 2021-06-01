@@ -6,8 +6,7 @@
 //
 
 import UIKit
-@available(iOS 13.0, *)
-@available(iOS 14.0, *)
+
 class FirstViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -20,9 +19,9 @@ class FirstViewController: UIViewController {
         setupButt(button: button, title: "按下变色")
         setupButt(button: button1, title: "按下跳转")
         setupButt(button: button2, title: "按下跳转")
-        button.addTarget(self, action: #selector(tapped), for: .touchDown)
-        button1.addTarget(self, action: #selector(tapped1), for: .touchDown)
-        button2.addTarget(self, action: #selector(tapped2), for: .touchDown)
+        button.addTarget(self, action: #selector(tapped), for: .touchUpInside)
+        button1.addTarget(self, action: #selector(tapped1), for: .touchUpInside)
+        button2.addTarget(self, action: #selector(tapped2), for: .touchUpInside)
         self.view.addSubview(button)
         self.view.addSubview(button1)
         self.view.addSubview(button2)
@@ -46,7 +45,9 @@ class FirstViewController: UIViewController {
         let des = NewViewController()
         des.message = "传递的信息"
         self.tabBarController?.tabBar.isHidden = true
+        
         self.navigationController?.pushViewController(des, animated: true)
+        self.hidesBottomBarWhenPushed = true
     }
     @objc func tapped() {
         if self.view.backgroundColor == UIColor.red{

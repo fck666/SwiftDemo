@@ -14,7 +14,8 @@ class RowViewController: UITableViewCell{
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        ImageView.contentMode = .scaleAspectFill
+
+//        ImageView.contentMode = .scaleAspectFit
         contentView.addSubview(ImageView)
         contentView.addSubview(titleLabel)
     }
@@ -24,6 +25,7 @@ class RowViewController: UITableViewCell{
         ImageView.frame = CGRect(x: 10, y: 20, width: 40, height: 40)
         ImageView.layer.cornerRadius = 5
         ImageView.layer.masksToBounds = true
+        ImageView.contentMode = .scaleAspectFill
         titleLabel.frame = CGRect(x: ImageView.frame.maxX + 10, y: 0, width: contentView.bounds.size.width - height - 10, height: height)
         
     }

@@ -9,21 +9,19 @@ import UIKit
 
 //@available(iOS 14.0, *)
 class ViewController: UITabBarController {
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBar.barTintColor = UIColor.white
         tabBar.tintColor = UIColor.green
         
-        addChildVC(childController: FirstViewController(), childTitle: "First", imageName: "01", selectedImageName: "1fill")
-        addChildVC(childController: SecViewController(), childTitle: "Second", imageName: "02", selectedImageName: "2fill")
-        addChildVC(childController: ThirdViewController(), childTitle: "Third", imageName: "03", selectedImageName: "3fill")
-//        self.viewControllers = [FirstViewController(),SecViewController(),ThirdViewController()]
-        // Do any additional setup after loading the view.
+       let nav1 = addChildVC(childController: FirstViewController(), childTitle: "First", imageName: "01", selectedImageName: "1fill")
+        let nav2 = addChildVC(childController: SecViewController(), childTitle: "Second", imageName: "02", selectedImageName: "2fill")
+        let nav3 = addChildVC(childController: ThirdViewController(), childTitle: "Third", imageName: "03", selectedImageName: "3fill")
+        
+        self.viewControllers = [nav1,nav2,nav3]
     }
-    private func addChildVC(childController: UIViewController, childTitle: String, imageName: String,selectedImageName: String) {
+    private func addChildVC(childController: UIViewController, childTitle: String, imageName: String,selectedImageName: String) -> UINavigationController {
         let navigation = UINavigationController(rootViewController: childController)
         navigation.navigationBar.barTintColor = childController.view.backgroundColor
         navigation.navigationBar.tintColor = UIColor.black
@@ -34,7 +32,9 @@ class ViewController: UITabBarController {
         
         childController.tabBarItem.image = UIImage(named: imageName)
         childController.tabBarItem.selectedImage = UIImage(named: selectedImageName)
-        self.addChild(navigation)
+        
+//        self.addChild(navigation)
+        return navigation
     }
 
 }

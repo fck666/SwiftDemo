@@ -32,7 +32,7 @@ class ViewController: UITabBarController {
         
         childController.tabBarItem.image = UIImage(named: imageName)
         childController.tabBarItem.selectedImage = UIImage(named: selectedImageName)
-        
+        childController.tabBarItem.imageInsets = UIEdgeInsets(top: 5, left: 3, bottom: 3, right: 3)
 //        self.addChild(navigation)
         return navigation
     }

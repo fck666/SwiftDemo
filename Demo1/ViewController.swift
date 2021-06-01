@@ -13,7 +13,7 @@ class ViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBar.barTintColor = UIColor.white
-        tabBar.tintColor = UIColor.green
+//        tabBar.tintColor = UIColor.green
         
        let nav1 = addChildVC(childController: FirstViewController(), childTitle: "First", imageName: "01", selectedImageName: "1fill")
         let nav2 = addChildVC(childController: SecViewController(), childTitle: "Second", imageName: "02", selectedImageName: "2fill")

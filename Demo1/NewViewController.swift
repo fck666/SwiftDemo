@@ -8,9 +8,9 @@ class NewViewController: UIViewController {
         self.view.backgroundColor = UIColor.purple
         let button = UIButton(frame: CGRect(x: self.view.center.x-45,y: self.view.center.y-25,width: 90,height: 50))
        
-        setupButt(button: button, title: "按下返回")
+        setupButt(button: button, title: "按下跳转")
         
-        button.addTarget(self, action: #selector(tapped), for: .touchDown)
+        button.addTarget(self, action: #selector(tapped), for: . touchUpInside)
        
         self.view.addSubview(button)
         print(message!)
@@ -26,9 +26,13 @@ class NewViewController: UIViewController {
     }
     
     @objc func tapped() {
-        self.tabBarController?.tabBar.isHidden = false
-        self.dismiss(animated: true, completion: nil)
-        self.navigationController?.popViewController(animated: true)
+//        self.tabBarController?.tabBar.isHidden = false
+//        self.dismiss(animated: true, completion: nil)
+//        self.navigationController?.popViewController(animated: true)
+        
+        let vc = NewViewController()
+        vc.message = "3"
+        self.navigationController?.pushViewController(vc, animated: true)
         }
     
     override func didReceiveMemoryWarning() {

@@ -24,7 +24,6 @@ class ViewController: UITabBarController {
         let navigation = UINavigationController(rootViewController: childController)
         navigation.navigationBar.barTintColor = childController.view.backgroundColor
         navigation.navigationBar.tintColor = UIColor.black
-        navigation.navigationItem.leftBarButtonItem
         let dict = [NSAttributedString.Key.foregroundColor:UIColor.darkGray,NSAttributedString.Key.font:UIFont.boldSystemFont(ofSize: 18)]
         navigation.navigationBar.titleTextAttributes = dict as? [String : AnyObject] as? [NSAttributedString.Key : Any]
         childController.title = childTitle

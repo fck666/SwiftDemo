@@ -16,6 +16,7 @@ class FirstViewController: UIViewController {
         let button = UIButton(frame: CGRect(x: self.view.center.x-45,y: self.view.center.y-25,width: 90,height: 50))
         let button1 = UIButton(frame: CGRect(x: self.view.center.x-45,y: self.view.center.y+60,width: 90,height: 50))
         let button2 = UIButton(frame: CGRect(x: self.view.center.x-45,y: self.view.center.y-110,width: 90,height: 50))
+        button.layer.cornerRadius = 10
         setupButt(button: button, title: "按下变色")
         setupButt(button: button1, title: "按下跳转")
         setupButt(button: button2, title: "按下跳转")
@@ -44,6 +45,7 @@ class FirstViewController: UIViewController {
         
         let des = NewViewController()
         des.message = "传递的信息"
+        self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.pushViewController(des, animated: true)
     }
     @objc func tapped() {

@@ -26,6 +26,7 @@ class NewViewController: UIViewController {
     }
     
     @objc func tapped() {
+        self.tabBarController?.tabBar.isHidden = false
         self.dismiss(animated: true, completion: nil)
         self.navigationController?.popViewController(animated: true)
         }

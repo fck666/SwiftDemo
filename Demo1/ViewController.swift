@@ -27,8 +27,7 @@ class ViewController: UITabBarController {
         let dict = [NSAttributedString.Key.foregroundColor:UIColor.darkGray,NSAttributedString.Key.font:UIFont.boldSystemFont(ofSize: 18)]
         navigation.navigationBar.titleTextAttributes = dict as? [String : AnyObject] as? [NSAttributedString.Key : Any]
         childController.title = childTitle
-        let iView = UIImageView(image: UIImage(named: imageName))
-        iView.frame(forAlignmentRect: CGRect(x: 10, y: 10, width: 10, height: 10))
+        
         
         childController.tabBarItem.image = UIImage(named: imageName)
         childController.tabBarItem.selectedImage = UIImage(named: selectedImageName)

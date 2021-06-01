@@ -22,6 +22,7 @@ class RowViewController: UITableViewCell{
         super.layoutSubviews()
         let height = contentView.frame.size.height
         ImageView.frame = CGRect(x: 10, y: 0, width: height, height: height)
+        ImageView.layer.cornerRadius = 5
         titleLabel.frame = CGRect(x: ImageView.frame.maxX + 10, y: 0, width: contentView.bounds.size.width - height - 10, height: height)
         
     }

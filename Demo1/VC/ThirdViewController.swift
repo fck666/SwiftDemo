@@ -62,11 +62,21 @@ class ThirdViewController: UIViewController {
         img.addGestureRecognizer(longPressGesture)
         img.addGestureRecognizer(twiceTapGesture)
         img.addGestureRecognizer(panGesture)
+        
+        singleTapGesture.require(toFail: twiceTapGesture)
         return img
     }()
     @objc func singleTap(recognizer:UITapGestureRecognizer){
         
-        recognizer.view?.frame = CGRect(x: self.view.center.x-90, y: self.view.center.y-90, width: 180, height: 180)
+
+        
+        //        checkImageView.frame(forAlignmentRect: CGRect(x: self.view.center.x-45,y: self.view.center.y+150,width: 90,height: 50))
+                        let newView = ThirdViewController()
+                //        self.hidesBottomBarWhenPushed = true
+                        newView.buttonIsHide = false
+                        self.navigationController?.pushViewController(newView, animated: true)
+                //        self.hidesBottomBarWhenPushed = false
+                
     }
     //长按弹窗
     @objc func longPress(){
@@ -84,13 +94,7 @@ class ThirdViewController: UIViewController {
     }
     //双击生成新的界面
     @objc func twiceTap(recognizer : UITapGestureRecognizer){
-//        checkImageView.frame(forAlignmentRect: CGRect(x: self.view.center.x-45,y: self.view.center.y+150,width: 90,height: 50))
-                let newView = ThirdViewController()
-        //        self.hidesBottomBarWhenPushed = true
-                newView.buttonIsHide = false
-                self.navigationController?.pushViewController(newView, animated: true)
-        //        self.hidesBottomBarWhenPushed = false
-        
+        recognizer.view?.frame = CGRect(x: self.view.center.x-90, y: self.view.center.y-90, width: 180, height: 180)
     }
     //拖动
     @objc func drag(recognizer : UIPanGestureRecognizer){

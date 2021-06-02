@@ -11,6 +11,8 @@ class ThirdViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.blue
+        checkImageView.image = UIImage(named: "1")
+        self.view.addSubview(checkImageView)
         // Do any additional setup after loading the view.
     }
 
@@ -18,6 +20,13 @@ class ThirdViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    lazy var checkImageView : UIImageView = {
+        let img = UIImageView(frame: CGRect(x: self.view.center.x-90, y: self.view.center.y-90, width: 180, height: 180))
+        img.contentMode = .scaleAspectFill
+        img.layer.cornerRadius = 5
+        img.layer.masksToBounds = true
+        return img
+    }()
     
 
     /*

@@ -89,7 +89,14 @@ class ThirdViewController: UIViewController {
     //双指放大缩小操作
     @objc func pinch(recognizer : UIPinchGestureRecognizer){
         self.view.bringSubviewToFront(checkImageView)
-        recognizer.view?.transform = (recognizer.view?.transform)!.scaledBy(x: recognizer.scale, y: recognizer.scale)
+//        recognizer.view?.transform = (recognizer.view?.transform)!.scaledBy(x: recognizer.scale, y: recognizer.scale)
+//        recognizer.scale = 1
+//        self.bounds = CGRectMake(self.bounds.origin.x,
+//                                        self.bounds.origin.y,
+//                                        self.bounds.size.width * scale,
+//                                        self.bounds.size.height * scale);
+        
+        recognizer.view?.bounds = CGRect(x: (recognizer.view?.bounds.origin.x)!, y: (recognizer.view?.bounds.origin.y)!, width: (recognizer.view?.bounds.size.width)! * recognizer.scale, height: (recognizer.view?.bounds.size.height)! * recognizer.scale)
         recognizer.scale = 1
     }
     //双击生成新的界面

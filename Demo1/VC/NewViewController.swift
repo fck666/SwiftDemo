@@ -44,7 +44,6 @@ class NewViewController: UIViewController {
         
         let vc = NewViewController()
         vc.message = "3"
-        self.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
         }
     

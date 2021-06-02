@@ -19,7 +19,7 @@ class ThirdViewController: UIViewController {
         self.view.addSubview(checkImageView)
         self.view.addSubview(backButton)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -34,14 +34,14 @@ class ThirdViewController: UIViewController {
     }
     
     @objc func tapBackRoot() {
-//        self.tabBarController?.tabBar.isHidden = false
+        //        self.tabBarController?.tabBar.isHidden = false
         self.dismiss(animated: true, completion: nil)
         self.navigationController?.popToRootViewController(animated: true)
         
-//        let vc = NewViewController()
-//        vc.message = "3"
-//        self.navigationController?.pushViewController(vc, animated: true)
-        }
+        //        let vc = NewViewController()
+        //        vc.message = "3"
+        //        self.navigationController?.pushViewController(vc, animated: true)
+    }
     lazy var checkImageView : UIImageView = {
         let img = UIImageView(frame: CGRect(x: self.view.center.x-90, y: self.view.center.y-90, width: 180, height: 180))
         img.contentMode = .scaleAspectFill
@@ -65,7 +65,6 @@ class ThirdViewController: UIViewController {
         return img
     }()
     @objc func singleTap(recognizer:UITapGestureRecognizer){
-        
         recognizer.view?.frame = CGRect(x: self.view.center.x-90, y: self.view.center.y-90, width: 180, height: 180)
     }
     //长按弹窗
@@ -84,22 +83,18 @@ class ThirdViewController: UIViewController {
     }
     //双击生成新的界面
     @objc func twiceTap(recognizer : UITapGestureRecognizer){
-//        checkImageView.frame(forAlignmentRect: CGRect(x: self.view.center.x-45,y: self.view.center.y+150,width: 90,height: 50))
-                let newView = ThirdViewController()
-        //        self.hidesBottomBarWhenPushed = true
-                newView.buttonIsHide = false
-                self.navigationController?.pushViewController(newView, animated: true)
-        //        self.hidesBottomBarWhenPushed = false
-        
+        let newView = ThirdViewController()
+        newView.buttonIsHide = false
+        self.navigationController?.pushViewController(newView, animated: true)
     }
     //拖动
     @objc func drag(recognizer : UIPanGestureRecognizer){
         self.view.bringSubviewToFront(checkImageView)
-                let translation = recognizer.translation(in: self.view)
-                checkImageView.center = CGPoint(x: checkImageView.center.x + translation.x, y: checkImageView.center.y + translation.y)
-                recognizer.setTranslation(CGPoint.zero, in: self.view)
+        let translation = recognizer.translation(in: self.view)
+        checkImageView.center = CGPoint(x: checkImageView.center.x + translation.x, y: checkImageView.center.y + translation.y)
+        recognizer.setTranslation(CGPoint.zero, in: self.view)
     }
-
+    
     
 }
 

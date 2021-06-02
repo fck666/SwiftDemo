@@ -9,13 +9,13 @@ import UIKit
 
 //@available(iOS 14.0, *)
 class TabbarController: UITabBarController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBar.barTintColor = UIColor.white
-//        tabBar.tintColor = UIColor.green
+        //        tabBar.tintColor = UIColor.green
         
-       let nav1 = addChildVC(childController: FirstViewController(), childTitle: "First", imageName: "01", selectedImageName: "1fill")
+        let nav1 = addChildVC(childController: FirstViewController(), childTitle: "First", imageName: "01", selectedImageName: "1fill")
         let nav2 = addChildVC(childController: SecViewController(), childTitle: "Second", imageName: "02", selectedImageName: "2fill")
         let nav3 = addChildVC(childController: ThirdViewController(), childTitle: "Third", imageName: "03", selectedImageName: "3fill")
         
@@ -33,9 +33,9 @@ class TabbarController: UITabBarController {
         childController.tabBarItem.image = UIImage(named: imageName)
         childController.tabBarItem.selectedImage = UIImage(named: selectedImageName)
         childController.tabBarItem.imageInsets = UIEdgeInsets(top: 5, left: 3, bottom: 3, right: 3)
-//        self.addChild(navigation)
+        //        self.addChild(navigation)
         return navigation
     }
-
+    
 }
 

@@ -10,15 +10,15 @@ import UIKit
 //@available(iOS 14.0, *)
 class RowView: UITableViewCell{
     static let identifierString = "GroupTableViewCell"
-  
+    
     
     lazy var portraitImageView:UIImageView = {
-    let image_View = UIImageView()
+        let image_View = UIImageView()
         image_View.contentMode = .scaleAspectFit
-    image_View.frame = CGRect(x: 10, y: 20, width: 40, height: 40)
-    image_View.layer.cornerRadius = 5
-    image_View.layer.masksToBounds = true
-    image_View.contentMode = .scaleAspectFill
+        image_View.frame = CGRect(x: 10, y: 20, width: 40, height: 40)
+        image_View.layer.cornerRadius = 5
+        image_View.layer.masksToBounds = true
+        image_View.contentMode = .scaleAspectFill
         return image_View
     }()
     lazy var departmentName : UILabel = {
@@ -29,12 +29,12 @@ class RowView: UITableViewCell{
     }()
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-       setUI()
-//
-//        contentView.addSubview(image_View)
-//        contentView.addSubview(titleLabel)
+        setUI()
+        //
+        //        contentView.addSubview(image_View)
+        //        contentView.addSubview(titleLabel)
     }
-
+    
     public func config(text:String,image: Int){
         departmentName.text = text
         portraitImageView.image = UIImage(named: String(image))
@@ -52,6 +52,6 @@ extension RowView{
         contentView.backgroundColor = .white
         contentView.addSubview(portraitImageView)
         contentView.addSubview(departmentName)
-       
+        
     }
 }

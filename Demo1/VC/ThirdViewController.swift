@@ -45,7 +45,7 @@ class ThirdViewController: UIViewController {
     lazy var checkImageView : UIImageView = {
         let img = UIImageView(frame: CGRect(x: self.view.center.x-90, y: self.view.center.y-90, width: 180, height: 180))
         img.contentMode = .scaleAspectFill
-        img.layer.cornerRadius = 5
+        img.layer.cornerRadius = 3
         img.layer.masksToBounds = true
         var a = arc4random_uniform(8)+1
         img.image = UIImage(named: String(a))
@@ -55,8 +55,8 @@ class ThirdViewController: UIViewController {
         let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(pinch))
         let twiceTapGesture = UITapGestureRecognizer(target: self, action: #selector(twiceTap))
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(drag))
-        twiceTapGesture.numberOfTouchesRequired = 1
         twiceTapGesture.numberOfTapsRequired = 2
+        twiceTapGesture.numberOfTouchesRequired = 1
         img.addGestureRecognizer(pinchGesture)
         img.addGestureRecognizer(singleTapGesture)
         img.addGestureRecognizer(longPressGesture)
@@ -64,13 +64,11 @@ class ThirdViewController: UIViewController {
         img.addGestureRecognizer(panGesture)
         return img
     }()
-    @objc func singleTap(){
-        let newView = ThirdViewController()
-//        self.hidesBottomBarWhenPushed = true
-        newView.buttonIsHide = false
-        self.navigationController?.pushViewController(newView, animated: true)
-//        self.hidesBottomBarWhenPushed = false
+    @objc func singleTap(recognizer:UITapGestureRecognizer){
+        
+        recognizer.view?.frame = CGRect(x: self.view.center.x-90, y: self.view.center.y-90, width: 180, height: 180)
     }
+    //长按弹窗
     @objc func longPress(){
         
         let alertController = UIAlertController(title: "复制图片", message: "", preferredStyle: .alert)
@@ -79,16 +77,27 @@ class ThirdViewController: UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     //双指放大缩小操作
-    @objc func pinch(){
+    @objc func pinch(recognizer : UIPinchGestureRecognizer){
+        self.view.bringSubviewToFront(checkImageView)
+        recognizer.view?.transform = (recognizer.view?.transform)!.scaledBy(x: recognizer.scale, y: recognizer.scale)
+        recognizer.scale = 1
+    }
+    //双击生成新的界面
+    @objc func twiceTap(recognizer : UITapGestureRecognizer){
+//        checkImageView.frame(forAlignmentRect: CGRect(x: self.view.center.x-45,y: self.view.center.y+150,width: 90,height: 50))
+                let newView = ThirdViewController()
+        //        self.hidesBottomBarWhenPushed = true
+                newView.buttonIsHide = false
+                self.navigationController?.pushViewController(newView, animated: true)
+        //        self.hidesBottomBarWhenPushed = false
         
     }
-    //双击恢复
-    @objc func twiceTap(){
-        checkImageView.frame(forAlignmentRect: CGRect(x: self.view.center.x-90, y: self.view.center.y-90, width: 180, height: 180))
-    }
     //拖动
-    @objc func drag(){
-
+    @objc func drag(recognizer : UIPanGestureRecognizer){
+        self.view.bringSubviewToFront(checkImageView)
+                let translation = recognizer.translation(in: self.view)
+                checkImageView.center = CGPoint(x: checkImageView.center.x + translation.x, y: checkImageView.center.y + translation.y)
+                recognizer.setTranslation(CGPoint.zero, in: self.view)
     }
 
     

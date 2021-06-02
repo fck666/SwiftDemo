@@ -14,8 +14,9 @@ class SecViewController: UIViewController{
     @objc func tapped(mes : String){
         let des = MesViewController()
         des.message = mes
-        
+        self.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(des, animated: true)
+        self.hidesBottomBarWhenPushed = false
     }
     let table = UITableView(frame: CGRect.zero, style: UITableView.Style.plain)
     //    var sources = [1:"视频研发部",2:"直播研发部",3:"AIlab",4:"共享服务线",5:"app开发",6:"短视频",7:"前端",8:"后端"]

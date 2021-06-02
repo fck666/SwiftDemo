@@ -12,22 +12,22 @@ class FirstViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.red
-        let button = UIButton(frame: CGRect(x: self.view.center.x-45,y: self.view.center.y-25,width: 90,height: 50))
-        let button1 = UIButton(frame: CGRect(x: self.view.center.x-45,y: self.view.center.y+60,width: 90,height: 50))
-        let button2 = UIButton(frame: CGRect(x: self.view.center.x-45,y: self.view.center.y-110,width: 90,height: 50))
-        button.layer.cornerRadius = 10
-        setupButt(button: button, title: "按下变色")
-        setupButt(button: button1, title: "按下跳转")
-        setupButt(button: button2, title: "按下跳转")
-        button.addTarget(self, action: #selector(tapped), for: .touchUpInside)
-        button1.addTarget(self, action: #selector(tapped1), for: .touchUpInside)
-        button2.addTarget(self, action: #selector(tapped2), for: .touchUpInside)
-        self.view.addSubview(button)
-        self.view.addSubview(button1)
-        self.view.addSubview(button2)
+        let changeColorButton = UIButton(frame: CGRect(x: self.view.center.x-45,y: self.view.center.y-25,width: 90,height: 50))
+        let presentViewButton = UIButton(frame: CGRect(x: self.view.center.x-45,y: self.view.center.y+60,width: 90,height: 50))
+        let pushViewButton = UIButton(frame: CGRect(x: self.view.center.x-45,y: self.view.center.y-110,width: 90,height: 50))
+        changeColorButton.layer.cornerRadius = 10
+        setupButton(button: changeColorButton, title: "按下变色")
+        setupButton(button: presentViewButton, title: "按下跳转")
+        setupButton(button: pushViewButton, title: "按下跳转")
+        changeColorButton.addTarget(self, action: #selector(tapped), for: .touchUpInside)
+        presentViewButton.addTarget(self, action: #selector(tapped1), for: .touchUpInside)
+        pushViewButton.addTarget(self, action: #selector(tapped2), for: .touchUpInside)
+        self.view.addSubview(changeColorButton)
+        self.view.addSubview(presentViewButton)
+        self.view.addSubview(pushViewButton)
         // Do any additional setup after loading the view.
     }
-    func setupButt(button : UIButton , title : String){
+    func setupButton(button : UIButton , title : String){
         button.setTitle(title, for:.normal)
         button.setTitleColor(UIColor.black, for: .normal) //普通状态下文字的颜色
         button.setTitleColor(UIColor.green, for: .highlighted) //触摸状态下文字的颜色

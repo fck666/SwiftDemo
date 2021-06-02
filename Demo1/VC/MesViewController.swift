@@ -20,12 +20,13 @@ class MesViewController: UIViewController {
         label.highlightedTextColor = UIColor.blue
         label.backgroundColor = UIColor.black
         label.text = title
+        label.textAlignment = .center
         label.textColor = UIColor.white
     }
     
-    @objc func tapped() {
-        self.dismiss(animated: true, completion: nil)
-        }
+//    @objc func tapped() {
+//        self.dismiss(animated: true, completion: nil)
+//        }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

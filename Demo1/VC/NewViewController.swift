@@ -16,7 +16,7 @@ class NewViewController: UIViewController {
         button1.addTarget(self, action: #selector(tapped1), for: .touchUpInside)
         self.view.addSubview(button)
         self.view.addSubview(button1)
-        print(message!)
+        print(message)
         // Do any additional setup after loading the view.
     }
     func setupButt(button : UIButton , title : String){

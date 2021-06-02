@@ -44,7 +44,7 @@ class FirstViewController: UIViewController {
         
         let des = NewViewController()
         des.message = "传递的信息"
-        self.tabBarController?.tabBar.isHidden = true
+//        self.tabBarController?.tabBar.isHidden = true
         self.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(des, animated: true)
         self.hidesBottomBarWhenPushed = false

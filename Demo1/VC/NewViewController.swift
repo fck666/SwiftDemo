@@ -8,11 +8,14 @@ class NewViewController: UIViewController {
         self.view.backgroundColor = UIColor.purple
         let button = UIButton(frame: CGRect(x: self.view.center.x-45,y: self.view.center.y-25,width: 90,height: 50))
        
-        setupButt(button: button, title: "按下跳转")
-        
-        button.addTarget(self, action: #selector(tapped), for: . touchUpInside)
+        setupButt(button: button, title: "按下返回")
+        let button1 = UIButton(frame: CGRect(x: self.view.center.x-45,y: self.view.center.y-90,width: 90,height: 50))
        
+        setupButt(button: button1, title: "按下跳转")
+        button.addTarget(self, action: #selector(tapped), for: . touchUpInside)
+        button1.addTarget(self, action: #selector(tapped1), for: .touchUpInside)
         self.view.addSubview(button)
+        self.view.addSubview(button1)
         print(message!)
         // Do any additional setup after loading the view.
     }
@@ -27,13 +30,24 @@ class NewViewController: UIViewController {
     
     @objc func tapped() {
 //        self.tabBarController?.tabBar.isHidden = false
+        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popToRootViewController(animated: true)
+        
+//        let vc = NewViewController()
+//        vc.message = "3"
+//        self.navigationController?.pushViewController(vc, animated: true)
+        }
+    @objc func tapped1() {
+//        self.tabBarController?.tabBar.isHidden = false
 //        self.dismiss(animated: true, completion: nil)
 //        self.navigationController?.popViewController(animated: true)
         
         let vc = NewViewController()
         vc.message = "3"
+        self.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
         }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

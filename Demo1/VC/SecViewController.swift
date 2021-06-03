@@ -21,21 +21,19 @@ class SecViewController: UIViewController{
     let table = UITableView(frame: CGRect.zero, style: UITableView.Style.plain)
     //    var sources = [1:"视频研发部",2:"直播研发部",3:"AIlab",4:"共享服务线",5:"app开发",6:"短视频",7:"前端",8:"后端"]
     
-    var datasource = ["视频研发部","直播研发部","AIlab","共享服务线","app开发","短视频","前端","后端"]
-    var sources = [1,2,3,4,5,6,7,8]
+    public var datasource = ["视频研发部","直播研发部","AIlab","共享服务线","app开发","短视频","前端","后端"]
+    public var sources = [1,2,3,4,5,6,7,8]
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
-        
-        
-        table.frame = view.bounds
         setupTableView()
-        table.delegate = self
-        table.dataSource = self
-        table.register(RowView.self, forCellReuseIdentifier: RowView.identifierString)
-        // Do any additional setup after loading the view.
     }
     private func setupTableView(){
+        table.frame = view.bounds
+        table.delegate = self
+        table.dataSource = self
+        table.register(TableCell.self, forCellReuseIdentifier: TableCell.identifierString)
+        // Do any additional setup after loading the view.
         table.rowHeight = 80
         view.addSubview(table)
     }
@@ -64,7 +62,7 @@ extension SecViewController :UITableViewDelegate,UITableViewDataSource{
         ////        cell.textLabel?.text = datasource[indexPath.row]
         //        cell.textLabel?.textColor = UIColor.black
         //        cell.backgroundView?.backgroundColor = UIColor.blue
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: RowView.identifierString, for: indexPath)as? RowView else { return UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: title) }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TableCell.identifierString, for: indexPath)as? TableCell else { return UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: title) }
         cell.config(text: datasource[indexPath.row] , image: sources[indexPath.row])
         
         return cell

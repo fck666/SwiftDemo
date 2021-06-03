@@ -16,7 +16,7 @@ class NewViewController: UIViewController {
         button1.addTarget(self, action: #selector(tapped1), for: .touchUpInside)
         self.view.addSubview(button)
         self.view.addSubview(button1)
-        print(message)
+        print(message ?? 6)
         // Do any additional setup after loading the view.
     }
     func setupButt(button : UIButton , title : String){
@@ -32,16 +32,8 @@ class NewViewController: UIViewController {
         //        self.tabBarController?.tabBar.isHidden = false
         self.dismiss(animated: true, completion: nil)
         self.navigationController?.popToRootViewController(animated: true)
-        
-        //        let vc = NewViewController()
-        //        vc.message = "3"
-        //        self.navigationController?.pushViewController(vc, animated: true)
     }
     @objc func tapped1() {
-        //        self.tabBarController?.tabBar.isHidden = false
-        //        self.dismiss(animated: true, completion: nil)
-        //        self.navigationController?.popViewController(animated: true)
-        
         let vc = NewViewController()
         vc.message = "3"
         self.navigationController?.pushViewController(vc, animated: true)

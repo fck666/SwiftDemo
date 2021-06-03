@@ -45,7 +45,7 @@ class ThirdViewController: UIViewController {
     lazy var checkImageView : UIImageView = {
         let img = UIImageView(frame: CGRect(x: self.view.center.x-90, y: self.view.center.y-90, width: 180, height: 180))
         img.contentMode = .scaleAspectFill
-        img.layer.cornerRadius = 3
+        img.layer.cornerRadius = 8
         img.layer.masksToBounds = true
         var a = arc4random_uniform(8)+1
         img.image = UIImage(named: String(a))
@@ -67,10 +67,6 @@ class ThirdViewController: UIViewController {
         return img
     }()
     @objc func singleTap(recognizer:UITapGestureRecognizer){
-        
-
-        
-        //        checkImageView.frame(forAlignmentRect: CGRect(x: self.view.center.x-45,y: self.view.center.y+150,width: 90,height: 50))
                         let newView = ThirdViewController()
                 //        self.hidesBottomBarWhenPushed = true
                         newView.buttonIsHide = false
@@ -91,12 +87,9 @@ class ThirdViewController: UIViewController {
         self.view.bringSubviewToFront(checkImageView)
 //        recognizer.view?.transform = (recognizer.view?.transform)!.scaledBy(x: recognizer.scale, y: recognizer.scale)
 //        recognizer.scale = 1
-//        self.bounds = CGRectMake(self.bounds.origin.x,
-//                                        self.bounds.origin.y,
-//                                        self.bounds.size.width * scale,
-//                                        self.bounds.size.height * scale);
-        
-        recognizer.view?.bounds = CGRect(x: (recognizer.view?.bounds.origin.x)!, y: (recognizer.view?.bounds.origin.y)!, width: (recognizer.view?.bounds.size.width)! * recognizer.scale, height: (recognizer.view?.bounds.size.height)! * recognizer.scale)
+//  transform会导致frame的改变
+        recognizer.view?.bounds =
+            CGRect(x: (recognizer.view?.bounds.origin.x)!, y: (recognizer.view?.bounds.origin.y)!, width: (recognizer.view?.bounds.size.width)! * recognizer.scale, height: (recognizer.view?.bounds.size.height)! * recognizer.scale)
         recognizer.scale = 1
     }
     //双击生成新的界面

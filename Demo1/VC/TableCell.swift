@@ -8,8 +8,8 @@
 import Foundation
 import UIKit
 //@available(iOS 14.0, *)
-class RowView: UITableViewCell{
-    static let identifierString = "GroupTableViewCell"
+class TableCell: UITableViewCell{
+    static let identifierString = "TableViewCell"
     
     
     lazy var portraitImageView:UIImageView = {
@@ -21,7 +21,7 @@ class RowView: UITableViewCell{
         image_View.contentMode = .scaleAspectFill
         return image_View
     }()
-    lazy var departmentName : UILabel = {
+    lazy var imageName : UILabel = {
         let titleLabel = UILabel()
         let height = contentView.frame.size.height
         titleLabel.frame = CGRect(x: portraitImageView.frame.maxX + 10, y: portraitImageView.frame.height/2, width: contentView.bounds.size.width - height - 10, height: height)
@@ -30,28 +30,25 @@ class RowView: UITableViewCell{
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUI()
-        //
-        //        contentView.addSubview(image_View)
-        //        contentView.addSubview(titleLabel)
     }
     
     public func config(text:String,image: Int){
-        departmentName.text = text
+        imageName.text = text
         portraitImageView.image = UIImage(named: String(image))
-        departmentName.backgroundColor = UIColor.white
-        departmentName.textColor = UIColor.blue
+        imageName.backgroundColor = UIColor.white
+        imageName.textColor = UIColor.blue
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
 }
-extension RowView{
+extension TableCell{
     func setUI() {
         selectionStyle = .none
         contentView.backgroundColor = .white
         contentView.addSubview(portraitImageView)
-        contentView.addSubview(departmentName)
+        contentView.addSubview(imageName)
         
     }
 }

@@ -32,9 +32,9 @@ class SecTableCell: UITableViewCell{
         setUI()
     }
     
-    public func config(text:String,image: Int){
+    public func config(text:String,image: String){
         imageName.text = text
-        portraitImageView.image = UIImage(named: String(image))
+        portraitImageView.image = UIImage(named: image)
         imageName.backgroundColor = UIColor.white
         imageName.textColor = UIColor.blue
     }

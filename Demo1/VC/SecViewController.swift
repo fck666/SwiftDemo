@@ -21,8 +21,7 @@ class SecViewController: UIViewController{
     let table = UITableView(frame: CGRect.zero, style: UITableView.Style.plain)
     //    var sources = [1:"视频研发部",2:"直播研发部",3:"AIlab",4:"共享服务线",5:"app开发",6:"短视频",7:"前端",8:"后端"]
     
-    public var datasource = ["视频研发部","直播研发部","AIlab","共享服务线","app开发","短视频","前端","后端"]
-    public var sources = [1,2,3,4,5,6,7,8]
+    var source = DepartmentData.departmentData()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
@@ -57,29 +56,30 @@ class SecViewController: UIViewController{
 }
 //@available(iOS 14.0, *)
 extension SecViewController :UITableViewDelegate,UITableViewDataSource{
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //        let cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: title) as? RowViewController
         ////        cell.textLabel?.text = datasource[indexPath.row]
         //        cell.textLabel?.textColor = UIColor.black
         //        cell.backgroundView?.backgroundColor = UIColor.blue
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SecTableCell.identifierString, for: indexPath)as? SecTableCell else { return UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: title) }
-        cell.config(text: datasource[indexPath.row] , image: sources[indexPath.row])
+        cell.config(text: source.departmentGroup[indexPath.row].departmentName , image: source.departmentGroup[indexPath.row].departmentImage)
         
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
-        tapped(mes: datasource[indexPath.row] )
+        
+        tapped(mes: source.departmentGroup[indexPath.row].departmentName)
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return datasource.count
+        return source.departmentGroup.count
     }
     // MARK: 滑动删除必须实现的方法
     // 如果没实现则无法策划
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete{
-            datasource.remove(at: indexPath.row)
-            sources.remove(at: indexPath.row)
+            source.departmentGroup.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
             tableView.reloadData()
         }

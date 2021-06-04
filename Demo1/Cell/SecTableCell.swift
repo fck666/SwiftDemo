@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 //@available(iOS 14.0, *)
-class TableCell: UITableViewCell{
+class SecTableCell: UITableViewCell{
     static let identifierString = "TableViewCell"
     
     
@@ -43,7 +43,7 @@ class TableCell: UITableViewCell{
     }
     
 }
-extension TableCell{
+extension SecTableCell{
     func setUI() {
         selectionStyle = .none
         contentView.backgroundColor = .white

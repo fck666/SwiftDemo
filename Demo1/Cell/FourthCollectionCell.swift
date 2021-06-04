@@ -6,7 +6,7 @@
 //
 
 import UIKit
-class CollectionCell : UICollectionViewCell {
+class FourthCollectionCell : UICollectionViewCell {
     static let identifierString = "CollectionCell"
     
     
@@ -21,8 +21,9 @@ class CollectionCell : UICollectionViewCell {
     }()
     lazy var tableCellName : UILabel = {
         let titleLabel = UILabel()
+        titleLabel.sizeToFit()
         let height = contentView.frame.size.height
-        titleLabel.frame = CGRect(x: collectionImageView.frame.midX-10, y: collectionImageView.frame.height+5, width: 20, height: 30)
+        titleLabel.frame = CGRect(x: collectionImageView.frame.midX-20, y: collectionImageView.frame.height+5, width: 40, height: 25)
         return titleLabel
     }()
     override init(frame: CGRect) {
@@ -31,19 +32,19 @@ class CollectionCell : UICollectionViewCell {
         
     }
     
-    public func config(text:String,image: Int){
+    public func config(text:String,image: String){
         tableCellName.text = text
-        collectionImageView.image = UIImage(named: String(image))
+        collectionImageView.image = UIImage(named: image)
         tableCellName.backgroundColor = UIColor.white
         tableCellName.textColor = UIColor.blue
-        tableCellName.font = UIFont.systemFont(ofSize: 10)
+        tableCellName.font = UIFont.systemFont(ofSize: 8)
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
 }
-extension CollectionCell{
+extension FourthCollectionCell{
     func setCollectionCell() {
         contentView.backgroundColor = .white
         contentView.addSubview(collectionImageView)

@@ -32,7 +32,7 @@ class SecViewController: UIViewController{
         table.frame = view.bounds
         table.delegate = self
         table.dataSource = self
-        table.register(TableCell.self, forCellReuseIdentifier: TableCell.identifierString)
+        table.register(SecTableCell.self, forCellReuseIdentifier: SecTableCell.identifierString)
         // Do any additional setup after loading the view.
         table.rowHeight = 80
         view.addSubview(table)
@@ -62,7 +62,7 @@ extension SecViewController :UITableViewDelegate,UITableViewDataSource{
         ////        cell.textLabel?.text = datasource[indexPath.row]
         //        cell.textLabel?.textColor = UIColor.black
         //        cell.backgroundView?.backgroundColor = UIColor.blue
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: TableCell.identifierString, for: indexPath)as? TableCell else { return UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: title) }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SecTableCell.identifierString, for: indexPath)as? SecTableCell else { return UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: title) }
         cell.config(text: datasource[indexPath.row] , image: sources[indexPath.row])
         
         return cell

@@ -38,13 +38,14 @@ class FourthViewController: UIViewController {
 }
 extension FourthViewController :UICollectionViewDelegate,UICollectionViewDataSource,UITableViewDelegate,UITableViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
+        let collectionData = CollectionData.collectionData()
+        return collectionData.collectionData[selectedRow].departmentGroup.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FourthCollectionCell.identifierString, for: indexPath) as! FourthCollectionCell
-        let data = DepartmentData.departmentData()
-        cell.config(text: data.departmentGroup[selectedRow].departmentName, image: data.departmentGroup[selectedRow].departmentImage)
+        let collectionData = CollectionData.collectionData()
+        cell.config(text: collectionData.collectionData[selectedRow].departmentGroup[indexPath.item].departmentName, image: collectionData.collectionData[selectedRow].departmentGroup[indexPath.item].departmentImage)
         cell.backgroundColor = UIColor.black
         return cell
     }

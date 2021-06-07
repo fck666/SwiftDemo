@@ -8,9 +8,13 @@
 
 //@available(iOS 14.0, *)
 import UIKit
+import SnapKit
+import Alamofire
+import Kingfisher
+import MJRefresh
 class SecViewController: UIViewController{
     
-    
+    let header = MJRefreshNormalHeader()
     @objc func tapped(mes : String){
         let des = MesViewController()
         des.message = mes
@@ -26,15 +30,28 @@ class SecViewController: UIViewController{
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         setupTableView()
+        header.lastUpdatedTimeLabel!.isHidden = true
+        header.setRefreshingTarget(self, refreshingAction: #selector(headerRefresh))
+            table.mj_header = header
+    }
+    @objc func headerRefresh(){
+        print("下拉刷新.")
+        sleep(2)
+        //重现加载表格数据
+        table.reloadData()
+        //结束刷新
+        table.mj_header!.endRefreshing()
     }
     private func setupTableView(){
-        table.frame = view.bounds
         table.delegate = self
         table.dataSource = self
         table.register(SecTableCell.self, forCellReuseIdentifier: SecTableCell.identifierString)
         // Do any additional setup after loading the view.
-        table.rowHeight = 80
+        table.rowHeight = view.bounds.height/10
         view.addSubview(table)
+        table.snp.makeConstraints{(make)in
+            make.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10))
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -63,8 +80,8 @@ extension SecViewController :UITableViewDelegate,UITableViewDataSource{
         //        cell.textLabel?.textColor = UIColor.black
         //        cell.backgroundView?.backgroundColor = UIColor.blue
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SecTableCell.identifierString, for: indexPath)as? SecTableCell else { return UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: title) }
-        cell.config(text: source.departmentGroup[indexPath.row].departmentName , image: source.departmentGroup[indexPath.row].departmentImage)
         
+        cell.config(text: source.departmentGroup[indexPath.row].departmentName , image: source.departmentGroup[indexPath.row].departmentImage)
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

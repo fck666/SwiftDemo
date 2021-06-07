@@ -7,6 +7,8 @@
 
 import Foundation
 import UIKit
+import SnapKit
+import Kingfisher
 //@available(iOS 14.0, *)
 class SecTableCell: UITableViewCell{
     static let identifierString = "TableViewCell"
@@ -15,7 +17,8 @@ class SecTableCell: UITableViewCell{
     lazy var portraitImageView:UIImageView = {
         let image_View = UIImageView()
         image_View.contentMode = .scaleAspectFit
-        image_View.frame = CGRect(x: 10, y: 20, width: 40, height: 40)
+//        image_View.frame = CGRect(x: 10, y: 20, width: 40, height: 40)
+
         image_View.layer.cornerRadius = 5
         image_View.layer.masksToBounds = true
         image_View.contentMode = .scaleAspectFill
@@ -24,7 +27,9 @@ class SecTableCell: UITableViewCell{
     lazy var imageName : UILabel = {
         let titleLabel = UILabel()
         let height = contentView.frame.size.height
-        titleLabel.frame = CGRect(x: portraitImageView.frame.maxX + 10, y: portraitImageView.frame.height/2, width: contentView.bounds.size.width - height - 10, height: height)
+//        titleLabel.frame = CGRect(x: portraitImageView.frame.maxX + 10, y: portraitImageView.frame.height/2, width: contentView.bounds.size.width - height - 10, height: height)
+      
+        
         return titleLabel
     }()
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
@@ -34,7 +39,9 @@ class SecTableCell: UITableViewCell{
     
     public func config(text:String,image: String){
         imageName.text = text
-        portraitImageView.image = UIImage(named: image)
+        let url = URL(string: image)
+        portraitImageView.kf.setImage(with: url)
+//        portraitImageView.image = UIImage(named: image)
         imageName.backgroundColor = UIColor.white
         imageName.textColor = UIColor.blue
     }
@@ -49,6 +56,17 @@ extension SecTableCell{
         contentView.backgroundColor = .white
         contentView.addSubview(portraitImageView)
         contentView.addSubview(imageName)
-        
+        portraitImageView.snp.makeConstraints{
+            make in
+            make.centerY.equalToSuperview()
+            make.width.equalTo(contentView.snp_height).inset(15)
+            make.height.equalTo(contentView.snp_height).inset(15)
+            make.left.equalToSuperview().offset(20)
+        }
+        imageName.snp.makeConstraints{
+            make in
+            make.centerY.equalToSuperview()
+            make.left.greaterThanOrEqualTo(portraitImageView.snp_right).offset(15)
+        }
     }
 }

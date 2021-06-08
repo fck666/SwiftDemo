@@ -14,6 +14,7 @@ import Kingfisher
 import MJRefresh
 class SecViewController: UIViewController{
     let header = MJRefreshNormalHeader()
+    var tabRefreshDelegate : TabbarRefreshDelegate?
     @objc func tapped(mes : String){
         let des = MesViewController()
         des.message = mes
@@ -115,4 +116,10 @@ extension SecViewController :UITableViewDelegate,UITableViewDataSource{
     }
     
     
+}
+
+extension SecViewController: TabbarRefreshDelegate {
+    func refresh() {
+        table.mj_header?.beginRefreshing()
+    }
 }

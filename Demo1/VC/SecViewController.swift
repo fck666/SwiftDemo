@@ -57,7 +57,7 @@ class SecViewController: UIViewController{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-  
+    
 }
 //@available(iOS 14.0, *)
 extension SecViewController :UITableViewDelegate,UITableViewDataSource{
@@ -68,10 +68,19 @@ extension SecViewController :UITableViewDelegate,UITableViewDataSource{
         //        cell.textLabel?.textColor = UIColor.black
         //        cell.backgroundView?.backgroundColor = UIColor.blue
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SecTableCell.identifierString, for: indexPath)as? SecTableCell else { return UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: title) }
-
+        
         let url = "https://raw.githubusercontent.com/xiaoyouxinqing/PostDemo/master/PostDemo/Resources/PostListData_recommend_1.json"
-        let list = Alamofire.request(url).responseData{
+        Alamofire.request(url).responseData{
             result in
+            
+            do {
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                let listData = try decoder.decode(PostList.self, from: result.data!)
+                let element = listData.list.first
+                
+                print(element?.name)
+            } catch { print(error) }
         }
         cell.config(text:  source.departmentGroup[indexPath.row].departmentName, image: source.departmentGroup[indexPath.row].departmentImage)
         return cell

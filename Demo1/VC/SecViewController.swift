@@ -32,9 +32,10 @@ class SecViewController: UIViewController{
         setupTableView()
         header.lastUpdatedTimeLabel!.isHidden = true
         header.setRefreshingTarget(self, refreshingAction: #selector(headerRefresh))
-            table.mj_header = header
+        table.mj_header = header
     }
     @objc func headerRefresh(){
+        table.mj_header?.beginRefreshing()
         print("下拉刷新.")
         sleep(2)
         //重现加载表格数据

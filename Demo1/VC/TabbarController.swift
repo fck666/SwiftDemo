@@ -9,10 +9,11 @@ import UIKit
 
 //@available(iOS 14.0, *)
 class TabbarController: UITabBarController {
-    
+    var lastDate = NSDate()
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBar.barTintColor = UIColor.white
+        self.delegate = self
         let nav1 = addChildVC(childController: FirstViewController(), childTitle: "First", imageName: "01", selectedImageName: "1fill")
         let nav2 = addChildVC(childController: SecViewController(), childTitle: "Second", imageName: "02", selectedImageName: "2fill")
         let nav3 = addChildVC(childController: ThirdViewController(), childTitle: "Third", imageName: "03", selectedImageName: "3fill")
@@ -35,4 +36,22 @@ class TabbarController: UITabBarController {
     }
     
 }
-
+extension TabbarController: UITabBarControllerDelegate{
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        let vc = tabBarController.selectedViewController
+        let date = NSDate()
+        if vc == viewController&&tabBarController.selectedIndex == 1{
+            if date.timeIntervalSince1970 - lastDate.timeIntervalSince1970 <= 0.5{
+                let vc = (viewController as! UINavigationController).viewControllers.first
+                (vc as! SecViewController).table.mj_header?.beginRefreshing()
+                print("666")
+                lastDate = NSDate(timeIntervalSinceReferenceDate:1000)
+            }else{
+                lastDate = date
+            }
+        }
+        else {
+            lastDate = date
+        }
+    }
+}

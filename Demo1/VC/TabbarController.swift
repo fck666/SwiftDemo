@@ -8,7 +8,7 @@
 import UIKit
 
 //@available(iOS 14.0, *)
-class TabbarController: UITabBarController {
+class TabbarController: UITabBarController{
     var lastDate = NSDate()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +35,9 @@ class TabbarController: UITabBarController {
         return navigation
     }
     
+}
+protocol TabbarDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController)
 }
 extension TabbarController: UITabBarControllerDelegate{
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {

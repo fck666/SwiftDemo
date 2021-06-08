@@ -13,7 +13,6 @@ import Alamofire
 import Kingfisher
 import MJRefresh
 class SecViewController: UIViewController{
-    
     let header = MJRefreshNormalHeader()
     @objc func tapped(mes : String){
         let des = MesViewController()
@@ -58,19 +57,7 @@ class SecViewController: UIViewController{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
-    
+  
 }
 //@available(iOS 14.0, *)
 extension SecViewController :UITableViewDelegate,UITableViewDataSource{
@@ -81,8 +68,12 @@ extension SecViewController :UITableViewDelegate,UITableViewDataSource{
         //        cell.textLabel?.textColor = UIColor.black
         //        cell.backgroundView?.backgroundColor = UIColor.blue
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SecTableCell.identifierString, for: indexPath)as? SecTableCell else { return UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: title) }
-        
-        cell.config(text: source.departmentGroup[indexPath.row].departmentName , image: source.departmentGroup[indexPath.row].departmentImage)
+
+        let url = "https://raw.githubusercontent.com/xiaoyouxinqing/PostDemo/master/PostDemo/Resources/PostListData_recommend_1.json"
+        let list = Alamofire.request(url).responseData{
+            result in
+        }
+        cell.config(text:  source.departmentGroup[indexPath.row].departmentName, image: source.departmentGroup[indexPath.row].departmentImage)
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

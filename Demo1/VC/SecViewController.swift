@@ -22,8 +22,6 @@ class SecViewController: UIViewController{
         self.hidesBottomBarWhenPushed = false
     }
     let table = UITableView(frame: CGRect.zero, style: UITableView.Style.plain)
-    //    var sources = [1:"视频研发部",2:"直播研发部",3:"AIlab",4:"共享服务线",5:"app开发",6:"短视频",7:"前端",8:"后端"]
-    
     var source = DepartmentData.departmentData()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,21 +66,19 @@ extension SecViewController :UITableViewDelegate,UITableViewDataSource{
         //        cell.textLabel?.textColor = UIColor.black
         //        cell.backgroundView?.backgroundColor = UIColor.blue
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SecTableCell.identifierString, for: indexPath)as? SecTableCell else { return UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: title) }
-        
         let url = "https://raw.githubusercontent.com/xiaoyouxinqing/PostDemo/master/PostDemo/Resources/PostListData_recommend_1.json"
         Alamofire.request(url).responseData{
             result in
-            
             do {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 let listData = try decoder.decode(PostList.self, from: result.data!)
-                let element = listData.list.first
-                
-                print(element?.name)
+                let element = listData.list[indexPath.row]
+                cell.config(text: element.name, image: self.source.departmentGroup[indexPath.row].departmentImage)
             } catch { print(error) }
+            
         }
-        cell.config(text:  source.departmentGroup[indexPath.row].departmentName, image: source.departmentGroup[indexPath.row].departmentImage)
+        
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

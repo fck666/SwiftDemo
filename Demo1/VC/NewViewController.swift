@@ -12,8 +12,8 @@ class NewViewController: UIViewController {
         let button1 = UIButton(frame: CGRect(x: self.view.center.x-45,y: self.view.center.y-90,width: 90,height: 50))
         
         setupButt(button: button1, title: "按下跳转")
-        button.addTarget(self, action: #selector(tapped1), for: . touchUpInside)
-        button1.addTarget(self, action: #selector(tapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(tapped), for: . touchUpInside)
+        button1.addTarget(self, action: #selector(tapped1), for: .touchUpInside)
         self.view.addSubview(button)
         self.view.addSubview(button1)
         print(message ?? 6)

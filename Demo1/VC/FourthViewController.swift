@@ -6,11 +6,14 @@
 //
 import  UIKit
 class FourthViewController: UIViewController {
+    var message : String?
+    let collectionData = CollectionData.collectionData()
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.purple
         view.addSubview(collection)
         setUpTable()
+        
     }
     var selectedRow = 0
     lazy var collection : UICollectionView = {
@@ -35,24 +38,36 @@ class FourthViewController: UIViewController {
         table.rowHeight = 60
         view.addSubview(table)
     }
+    
+    @objc func tap(mes : String){
+        let des = DetailViewController()
+        des.message = mes
+        self.navigationController?.pushViewController(des, animated: true)
+    }
+    
 }
 extension FourthViewController :UICollectionViewDelegate,UICollectionViewDataSource,UITableViewDelegate,UITableViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let collectionData = CollectionData.collectionData()
+//        let collectionData = CollectionData.collectionData()
         return collectionData.collectionData[selectedRow].departmentGroup.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FourthCollectionCell.identifierString, for: indexPath) as! FourthCollectionCell
-        let collectionData = CollectionData.collectionData()
+        
         cell.config(text: collectionData.collectionData[selectedRow].departmentGroup[indexPath.item].departmentName, image: collectionData.collectionData[selectedRow].departmentGroup[indexPath.item].departmentImage)
         cell.backgroundColor = UIColor.black
         return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath.row)
+        tap(mes: collectionData.collectionData[selectedRow].departmentGroup[indexPath.item].departmentName)
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let data = DepartmentData.departmentData()
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FourthTableCell.identifierString, for: indexPath)as? FourthTableCell else { return UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: title) }
         cell.config(text: data.departmentGroup[indexPath.row].departmentName)
+        cell.configNum(text: "1")
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -64,5 +79,4 @@ extension FourthViewController :UICollectionViewDelegate,UICollectionViewDataSou
         let data = DepartmentData.departmentData()
         return data.departmentGroup.count
     }
-    
 }

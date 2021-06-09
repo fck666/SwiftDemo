@@ -7,11 +7,7 @@ class MesViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.purple
         let label = UILabel(frame: CGRect(x: self.view.center.x-45,y: self.view.center.y-25,width: 90,height: 50))
-        
         setupLabel(label: label, title: message ?? "6")
-        
-        
-        
         self.view.addSubview(label)
         //        print(message!)
         // Do any additional setup after loading the view.

@@ -8,8 +8,6 @@
 import UIKit
 class FourthCollectionCell : UICollectionViewCell {
     static let identifierString = "CollectionCell"
-    
-    
     lazy var collectionImageView:UIImageView = {
         let image_View = UIImageView()
         image_View.contentMode = .scaleAspectFit
@@ -23,13 +21,13 @@ class FourthCollectionCell : UICollectionViewCell {
         let titleLabel = UILabel()
         titleLabel.sizeToFit()
         let height = contentView.frame.size.height
+        titleLabel.textAlignment = NSTextAlignment.center
         titleLabel.frame = CGRect(x: collectionImageView.frame.midX-20, y: collectionImageView.frame.height+5, width: 40, height: 25)
         return titleLabel
     }()
     override init(frame: CGRect) {
         super.init(frame: CGRect(x: 0, y: 0, width: 60, height: 80))
         setCollectionCell()
-        
     }
     
     public func config(text:String,image: String){
@@ -49,6 +47,5 @@ extension FourthCollectionCell{
         contentView.backgroundColor = .white
         contentView.addSubview(collectionImageView)
         contentView.addSubview(tableCellName)
-        
     }
 }

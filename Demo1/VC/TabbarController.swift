@@ -19,9 +19,7 @@ class TabbarController: UITabBarController{
         self.delegate = self
         let nav1 = addChildVC(childController: FirstViewController(), childTitle: "First", imageName: "01", selectedImageName: "1fill")
         let secVC = SecViewController()
-        
         refreshDelegate = secVC
-        
         let nav2 = addChildVC(childController: secVC, childTitle: "Second", imageName: "02", selectedImageName: "2fill")
         let nav3 = addChildVC(childController: ThirdViewController(), childTitle: "Third", imageName: "03", selectedImageName: "3fill")
         let nav4 = addChildVC(childController: FourthViewController(), childTitle: "Fourth", imageName: "04", selectedImageName: "4fill")

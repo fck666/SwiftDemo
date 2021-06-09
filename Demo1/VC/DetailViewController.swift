@@ -1,23 +1,29 @@
 import UIKit
 //@available(iOS 13.0, *)
 //@available(iOS 14.0, *)
-class NewViewController: UIViewController {
+class DetailViewController: UIViewController {
     var message : String?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.purple
         let button = UIButton(frame: CGRect(x: self.view.center.x-45,y: self.view.center.y-25,width: 90,height: 50))
-        
         setupButt(button: button, title: "按下返回")
         let button1 = UIButton(frame: CGRect(x: self.view.center.x-45,y: self.view.center.y-90,width: 90,height: 50))
-        
-        setupButt(button: button1, title: "按下跳转")
-        button.addTarget(self, action: #selector(tapped1), for: . touchUpInside)
-        button1.addTarget(self, action: #selector(tapped), for: .touchUpInside)
+        setupButt(button: button1, title: "按下添加")
+        button.addTarget(self, action: #selector(tapBack), for: . touchUpInside)
+        button1.addTarget(self, action: #selector(tapAdd), for: .touchUpInside)
         self.view.addSubview(button)
         self.view.addSubview(button1)
-        print(message ?? 6)
-        // Do any additional setup after loading the view.
+        let label = UILabel(frame: CGRect(x: self.view.center.x-45,y: self.view.center.y-155,width: 90,height: 50))
+        setupLabel(label: label, title: message ?? "6")
+        self.view.addSubview(label)
+    }
+    func setupLabel(label : UILabel , title : String){
+        label.highlightedTextColor = UIColor.blue
+        label.backgroundColor = UIColor.black
+        label.text = title
+        label.textAlignment = .center
+        label.textColor = UIColor.white
     }
     func setupButt(button : UIButton , title : String){
         button.setTitle(title, for:.normal)
@@ -28,15 +34,12 @@ class NewViewController: UIViewController {
         button.backgroundColor = UIColor.white
     }
     
-    @objc func tapped() {
-        //        self.tabBarController?.tabBar.isHidden = false
+    @objc func tapBack() {
         self.dismiss(animated: true, completion: nil)
         self.navigationController?.popToRootViewController(animated: true)
     }
-    @objc func tapped1() {
-        let vc = NewViewController()
-        vc.message = "3"
-        self.navigationController?.pushViewController(vc, animated: true)
+    @objc func tapAdd() {
+        
     }
     
     

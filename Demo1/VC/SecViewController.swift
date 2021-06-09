@@ -14,6 +14,7 @@ import Kingfisher
 import MJRefresh
 class SecViewController: UIViewController{
     let header = MJRefreshNormalHeader()
+    var text : [String] = []
     var tabRefreshDelegate : TabbarRefreshDelegate?
     @objc func tapped(mes : String){
         let des = MesViewController()
@@ -27,6 +28,7 @@ class SecViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
+        getNetText()
         setupTableView()
         header.lastUpdatedTimeLabel!.isHidden = true
         header.setRefreshingTarget(self, refreshingAction: #selector(headerRefresh))
@@ -35,7 +37,7 @@ class SecViewController: UIViewController{
     @objc func headerRefresh(){
         table.mj_header?.beginRefreshing()
         print("下拉刷新.")
-        sleep(2)
+        refreshText()
         //重现加载表格数据
         table.reloadData()
         //结束刷新
@@ -56,6 +58,34 @@ class SecViewController: UIViewController{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    func getNetText(){
+        let url = "https://raw.githubusercontent.com/xiaoyouxinqing/PostDemo/master/PostDemo/Resources/PostListData_recommend_1.json"
+        Alamofire.request(url).responseData{
+            result in
+            do {
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                let listData = try decoder.decode(PostList.self, from: result.data!)
+                for i in 0...7{
+                    let element = listData.list[i]
+                    self.text.append(element.name)}
+            } catch { print(error) }
+        }
+    }
+    func refreshText(){
+        let url = "https://raw.githubusercontent.com/xiaoyouxinqing/PostDemo/master/PostDemo/Resources/PostListData_recommend_1.json"
+        Alamofire.request(url).responseData{
+            result in
+            do {
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                let listData = try decoder.decode(PostList.self, from: result.data!)
+                for i in 0...7{
+                    let element = listData.list[i]
+                    self.text[i]=element.name}
+            } catch { print(error) }
+        }
+    }
     
 }
 //@available(iOS 14.0, *)
@@ -67,24 +97,11 @@ extension SecViewController :UITableViewDelegate,UITableViewDataSource{
         //        cell.textLabel?.textColor = UIColor.black
         //        cell.backgroundView?.backgroundColor = UIColor.blue
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SecTableCell.identifierString, for: indexPath)as? SecTableCell else { return UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: title) }
-        let url = "https://raw.githubusercontent.com/xiaoyouxinqing/PostDemo/master/PostDemo/Resources/PostListData_recommend_1.json"
-        Alamofire.request(url).responseData{
-            result in
-            do {
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                let listData = try decoder.decode(PostList.self, from: result.data!)
-                let element = listData.list[indexPath.row]
-                cell.config(text: element.name, image: self.source.departmentGroup[indexPath.row].departmentImage)
-            } catch { print(error) }
-            
-        }
-        
+        cell.config(text: text[indexPath.row], image: self.source.departmentGroup[indexPath.row].departmentImage)
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
-        
         tapped(mes: source.departmentGroup[indexPath.row].departmentName)
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -117,7 +134,6 @@ extension SecViewController :UITableViewDelegate,UITableViewDataSource{
     
     
 }
-
 extension SecViewController: TabbarRefreshDelegate {
     func refresh() {
         table.mj_header?.beginRefreshing()

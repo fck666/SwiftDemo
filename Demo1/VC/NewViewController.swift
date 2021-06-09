@@ -3,7 +3,12 @@ import UIKit
 //@available(iOS 14.0, *)
 class NewViewController: UIViewController {
     var message : String?
+    deinit {
+        print("NewViewController deinit")
+    }
     override func viewDidLoad() {
+        
+      
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.purple
         let button = UIButton(frame: CGRect(x: self.view.center.x-45,y: self.view.center.y-25,width: 90,height: 50))

@@ -44,7 +44,7 @@ class DetailViewController: UIViewController {
     }
     @objc func tapAdd() {
         tableCellNum[row] += 1
-        myCol!(tableCellNum);
+        myCol!(tableCellNum)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

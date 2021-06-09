@@ -35,6 +35,7 @@ class FourthTableCell: UITableViewCell{
     }
     public func config(text:String){
         tableCellName.text = text
+        tableCellName.textAlignment = NSTextAlignment.center
         tableCellName.backgroundColor = UIColor.white
         tableCellName.textColor = UIColor.black
         tableCellName.font = UIFont.systemFont(ofSize: 14)

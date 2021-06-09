@@ -16,12 +16,9 @@ struct Post: Codable, Identifiable {
     let vip: Bool
     let name: String
     let date: String // yyyy-MM-dd HH:mm:ss
-    
     var isFollowed: Bool
-    
     let text: String
     let images: [String] // image names
-    
     var commentCount: Int
     var likeCount: Int
     var isLiked: Bool

@@ -7,6 +7,9 @@ class DetailViewController: UIViewController {
     var myCol:MyColsure?
     var row = 0
     var tableCellNum : [Int] = [0,0,0,0,0,0,0,0]
+    deinit {
+        print("DetailViewController deinit")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.purple

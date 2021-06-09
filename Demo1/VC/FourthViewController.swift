@@ -11,6 +11,9 @@ class FourthViewController: UIViewController {
     var tableCellNum : [Int] = [0,0,0,0,0,0,0,0]
     let collectionData = CollectionData.collectionData()
     var selectedRow = 0
+    deinit {
+        print("FourthViewController deinit")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.purple

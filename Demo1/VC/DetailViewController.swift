@@ -3,6 +3,10 @@ import UIKit
 //@available(iOS 14.0, *)
 class DetailViewController: UIViewController {
     var message : String?
+    typealias MyColsure = (_ str:[Int])-> Void
+    var myCol:MyColsure?
+    var row = 0
+    var tableCellNum : [Int] = [0,0,0,0,0,0,0,0]
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.purple
@@ -39,10 +43,9 @@ class DetailViewController: UIViewController {
         self.navigationController?.popToRootViewController(animated: true)
     }
     @objc func tapAdd() {
-        
+        tableCellNum[row] += 1
+        myCol!(tableCellNum);
     }
-    
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

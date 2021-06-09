@@ -6,7 +6,9 @@
 //
 import  UIKit
 class FourthViewController: UIViewController {
+    let des = DetailViewController()
     var message : String?
+    var tableCellNum : [Int] = [0,0,0,0,0,0,0,0]
     let collectionData = CollectionData.collectionData()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,15 +42,21 @@ class FourthViewController: UIViewController {
     }
     
     @objc func tap(mes : String){
-        let des = DetailViewController()
         des.message = mes
+        des.row = selectedRow
+        des.myCol = {(_ text:[Int]) ->Void in
+            print("闭包传过来的值为\(text)")
+            self.tableCellNum = text
+            self.table.reloadData()
+        }
         self.navigationController?.pushViewController(des, animated: true)
     }
+    
     
 }
 extension FourthViewController :UICollectionViewDelegate,UICollectionViewDataSource,UITableViewDelegate,UITableViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        let collectionData = CollectionData.collectionData()
+        //        let collectionData = CollectionData.collectionData()
         return collectionData.collectionData[selectedRow].departmentGroup.count
     }
     
@@ -60,14 +68,16 @@ extension FourthViewController :UICollectionViewDelegate,UICollectionViewDataSou
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.row)
+        print(indexPath.item)
         tap(mes: collectionData.collectionData[selectedRow].departmentGroup[indexPath.item].departmentName)
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let data = DepartmentData.departmentData()
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FourthTableCell.identifierString, for: indexPath)as? FourthTableCell else { return UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: title) }
         cell.config(text: data.departmentGroup[indexPath.row].departmentName)
-        cell.configNum(text: "1")
+        if tableCellNum[indexPath.row] != 0{
+            cell.configNum(text: String(tableCellNum[indexPath.row]))
+        }
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

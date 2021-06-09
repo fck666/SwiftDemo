@@ -37,7 +37,7 @@ class SecViewController: UIViewController{
     @objc func headerRefresh(){
         table.mj_header?.beginRefreshing()
         print("下拉刷新.")
-        refreshText()
+        getNetText()
         //重现加载表格数据
         table.reloadData()
         //结束刷新
@@ -66,26 +66,19 @@ class SecViewController: UIViewController{
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 let listData = try decoder.decode(PostList.self, from: result.data!)
-                for i in 0...7{
-                    let element = listData.list[i]
-                    self.text.append(element.name)}
+                if self.text.isEmpty{
+                    for i in 0...7{
+                        let element = listData.list[i]
+                        self.text.append(element.name)}}
+                else{
+                    for i in 0...7{
+                        let element = listData.list[i]
+                        self.text[i]=element.name}
+                }
             } catch { print(error) }
         }
     }
-    func refreshText(){
-        let url = "https://raw.githubusercontent.com/xiaoyouxinqing/PostDemo/master/PostDemo/Resources/PostListData_recommend_1.json"
-        Alamofire.request(url).responseData{
-            result in
-            do {
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                let listData = try decoder.decode(PostList.self, from: result.data!)
-                for i in 0...7{
-                    let element = listData.list[i]
-                    self.text[i]=element.name}
-            } catch { print(error) }
-        }
-    }
+    
     
 }
 //@available(iOS 14.0, *)

@@ -6,7 +6,7 @@
 //
 import  UIKit
 class FourthViewController: UIViewController {
-    let des = DetailViewController()
+    
     var message : String?
     var tableCellNum : [Int] = [0,0,0,0,0,0,0,0]
     let collectionData = CollectionData.collectionData()
@@ -19,15 +19,9 @@ class FourthViewController: UIViewController {
         view.backgroundColor = UIColor.purple
         view.addSubview(collection)
         setUpTable()
-        getClosureValue()
+        
     }
-    func getClosureValue(){
-        des.myCol = {(_ text:[Int]) ->Void in
-            print("闭包传过来的值为\(text)")
-            self.tableCellNum = text
-            self.table.reloadData()
-        }
-    }
+  
     lazy var collection : UICollectionView = {
         let layout = UICollectionViewFlowLayout.init()
         layout.itemSize = CGSize(width: 60 , height: 80)
@@ -52,8 +46,14 @@ class FourthViewController: UIViewController {
     }
     
     @objc func tap(mes : String){
+        let des = DetailViewController()
         des.message = mes
         des.row = selectedRow
+        des.myCol = {(_ text:[Int]) ->Void in
+            print("闭包传过来的值为\(text)")
+            self.tableCellNum = text
+            self.table.reloadData()
+        }
         self.navigationController?.pushViewController(des, animated: true)
     }
     

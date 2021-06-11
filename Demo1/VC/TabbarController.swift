@@ -10,7 +10,7 @@ import UIKit
 //@available(iOS 14.0, *)
 class TabbarController: UITabBarController{
     var lastDate = NSDate()
-    
+    var indexFlag = 0
     var refreshDelegate: TabbarRefreshDelegate?
     
     override func viewDidLoad() {
@@ -39,10 +39,35 @@ class TabbarController: UITabBarController{
         //        self.addChild(navigation)
         return navigation
     }
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        if let index = tabBar.items?.firstIndex(of: item) {
+            if indexFlag != index {
+                animationWithIndex(index: index)
+            }
+        }
+    }
+    //tabbar动画效果
+    func animationWithIndex(index: Int) {
+        var arr = [UIView]()
+        for tabBarButton in tabBar.subviews {
+            if tabBarButton.isKind(of: NSClassFromString("UITabBarButton")!) {
+                arr.append(tabBarButton)
+            }
+        }
+        let pulse = CABasicAnimation(keyPath: "transform.scale")
+        pulse.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        pulse.duration = 0.08
+        pulse.repeatCount = 1
+        pulse.autoreverses = true
+        pulse.fromValue = NSNumber(value: 0.7)
+        pulse.toValue = NSNumber(value: 1.3)
+        arr[index].layer.add(pulse, forKey: nil)
+        indexFlag = index
+    }
     
 }
 protocol TabbarRefreshDelegate {
-//    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController)
+    //    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController)
     func refresh()
     
 }
@@ -52,8 +77,8 @@ extension TabbarController: UITabBarControllerDelegate{
         let date = NSDate()
         if vc == viewController&&tabBarController.selectedIndex == 1{
             if date.timeIntervalSince1970 - lastDate.timeIntervalSince1970 <= 0.5{
-//                let vc = (viewController as! UINavigationController).viewControllers.first
-//                (vc as! SecViewController).table.mj_header?.beginRefreshing()
+                //                let vc = (viewController as! UINavigationController).viewControllers.first
+                //                (vc as! SecViewController).table.mj_header?.beginRefreshing()
                 print("666")
                 
                 if let refreshDelegate = refreshDelegate {

@@ -5,25 +5,24 @@ class NewViewController: UIViewController {
     var message : String?
     deinit {
         print("NewViewController deinit")
+        NotificationCenter.default.removeObserver(self)
     }
     override func viewDidLoad() {
-        
-      
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.purple
         let button = UIButton(frame: CGRect(x: self.view.center.x-45,y: self.view.center.y-25,width: 90,height: 50))
-        
         setupButt(button: button, title: "按下返回")
         let button1 = UIButton(frame: CGRect(x: self.view.center.x-45,y: self.view.center.y-90,width: 90,height: 50))
-        
         setupButt(button: button1, title: "按下跳转")
-        button.addTarget(self, action: #selector(tapped), for: . touchUpInside)
+        button.addTarget(self, action: #selector(tapBackNotifi), for: . touchUpInside)
         button1.addTarget(self, action: #selector(tapped1), for: .touchUpInside)
         self.view.addSubview(button)
         self.view.addSubview(button1)
         print(message ?? 6)
         // Do any additional setup after loading the view.
+        
     }
+    
     func setupButt(button : UIButton , title : String){
         button.setTitle(title, for:.normal)
         button.setTitleColor(UIColor.black, for: .normal) //普通状态下文字的颜色
@@ -33,10 +32,11 @@ class NewViewController: UIViewController {
         button.backgroundColor = UIColor.white
     }
     
-    @objc func tapped() {
-        //        self.tabBarController?.tabBar.isHidden = false
+    @objc func tapBackNotifi() {
         self.dismiss(animated: true, completion: nil)
         self.navigationController?.popToRootViewController(animated: true)
+        let num = arc4random_uniform(100)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue:"notification"), object: nil, userInfo: ["info":num])
     }
     @objc func tapped1() {
         let vc = NewViewController()

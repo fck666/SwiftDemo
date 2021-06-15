@@ -19,9 +19,8 @@ class SecViewController: UIViewController{
     @objc func tapped(mes : String){
         let des = MesViewController()
         des.message = mes
-        self.hidesBottomBarWhenPushed = true
+        des.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(des, animated: true)
-        self.hidesBottomBarWhenPushed = false
     }
     let table = UITableView(frame: CGRect.zero, style: UITableView.Style.plain)
     var source = DepartmentData.departmentData()
@@ -34,6 +33,7 @@ class SecViewController: UIViewController{
         header.setRefreshingTarget(self, refreshingAction: #selector(headerRefresh))
         table.mj_header = header
     }
+   
     @objc func headerRefresh(){
         table.mj_header?.beginRefreshing()
         print("下拉刷新.")

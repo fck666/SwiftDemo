@@ -28,8 +28,6 @@ class SecTableCell: UITableViewCell{
         let titleLabel = UILabel()
         let height = contentView.frame.size.height
 //        titleLabel.frame = CGRect(x: portraitImageView.frame.maxX + 10, y: portraitImageView.frame.height/2, width: contentView.bounds.size.width - height - 10, height: height)
-      
-        
         return titleLabel
     }()
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){

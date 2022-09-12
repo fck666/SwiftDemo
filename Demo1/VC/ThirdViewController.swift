@@ -11,8 +11,9 @@ class ThirdViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.blue
+        self.view.backgroundColor = UIColor.white
         let backButton = UIButton(frame: CGRect(x: self.view.center.x-45,y: self.view.center.y+150,width: 90,height: 50))
+        self.view.addSubview(shadowRadiusView)
         setupButt(button: backButton, title: "返回root")
         backButton.isHidden = buttonIsHide
         backButton.addTarget(self, action: #selector(tapBackRoot), for: .touchUpInside)
@@ -42,6 +43,23 @@ class ThirdViewController: UIViewController {
 //        vc.message = "3"
 //        self.navigationController?.pushViewController(vc, animated: true)
         }
+    lazy var shadowRadiusView : UIView = {
+        let view = UIView(frame: CGRect(x: self.view.center.x-60, y: self.view.center.y + 120, width: 120, height: 120))
+        view.backgroundColor = UIColor.orange
+        view.layer.shadowColor = UIColor.green.cgColor;
+        view.layer.borderColor = view.layer.shadowColor; // 边框颜色建议和阴影颜色一致
+        view.layer.borderWidth = 0.000001; // 只要不为0就行
+        view.layer.cornerRadius = 40;
+        if #available(iOS 11.0, *) {
+            view.layer.maskedCorners = [CACornerMask.layerMaxXMaxYCorner,  CACornerMask.layerMaxXMinYCorner]
+        } else {
+            // Fallback on earlier versions
+        }
+        view.layer.shadowOpacity = 1;
+        view.layer.shadowRadius = 20;
+        view.layer.shadowOffset = CGSize(width: 0, height: 0);
+        return view;
+    }()
     lazy var checkImageView : UIImageView = {
         let img = UIImageView(frame: CGRect(x: self.view.center.x-90, y: self.view.center.y-90, width: 180, height: 180))
         img.contentMode = .scaleAspectFill

@@ -1,14 +1,18 @@
 PODS:
   - Alamofire (4.9.1)
   - Kingfisher (4.10.1)
-  - MJRefresh (3.6.1)
+  - MJRefresh (3.7.5)
   - SnapKit (4.0.1)
+  - YYCategories (1.0.4):
+    - YYCategories/no-arc (= 1.0.4)
+  - YYCategories/no-arc (1.0.4)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
   - Kingfisher (~> 4.3)
   - MJRefresh
   - SnapKit (~> 4.0.0)
+  - YYCategories
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -16,13 +20,15 @@ SPEC REPOS:
     - Kingfisher
     - MJRefresh
     - SnapKit
+    - YYCategories
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
-  MJRefresh: d2c1970d1cf6e77fcfcdfe76c943dfab8dbfa5c1
+  MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
+  YYCategories: 6bcd4314c6661a561410dce4a793379ebd306abd
 
-PODFILE CHECKSUM: 2af60b73df2d772fc0fc9601fe08bb0804d1b873
+PODFILE CHECKSUM: d55f02cd61c0b3f15510f22070b3d9f737303b17
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.3

@@ -9,6 +9,8 @@ target 'Demo1' do
     pod 'SnapKit', '~> 4.0.0'
     pod 'Kingfisher', '~> 4.3'
     pod 'MJRefresh'
+    pod 'YYCategories'
+    pod 'SwiftyJSON', '~> 4.0'
 end
 
 

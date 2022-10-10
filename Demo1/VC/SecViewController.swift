@@ -33,6 +33,11 @@ class SecViewController: UIViewController{
         header.setRefreshingTarget(self, refreshingAction: #selector(headerRefresh))
         table.mj_header = header
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated);
+        self.navigationController?.navigationBar.backgroundColor = .white
+    }
    
     @objc func headerRefresh(){
         table.mj_header?.beginRefreshing()
@@ -59,23 +64,32 @@ class SecViewController: UIViewController{
         // Dispose of any resources that can be recreated.
     }
     func getNetText(){
-        let url = "https://raw.githubusercontent.com/xiaoyouxinqing/PostDemo/master/PostDemo/Resources/PostListData_recommend_1.json"
-        Alamofire.request(url).responseData{
-            result in
-            do {
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                let listData = try decoder.decode(PostList.self, from: result.data!)
-                if self.text.isEmpty{
-                    for i in 0...7{
-                        let element = listData.list[i]
-                        self.text.append(element.name)}}
-                else{
-                    for i in 0...7{
-                        let element = listData.list[i]
-                        self.text[i]=element.name}
-                }
-            } catch { print(error) }
+        Alamofire.request("https://httpbin.org/get", parameters: ["foo":"bar"]).responseJSON { response in
+            if let dic = response.result.value as? Dictionary<String, Any>{
+                print("字典: \(dic)")
+        }
+//        Alamofire.request("https://httpbin.org/get", parameters: ["foo":"bar"]).responseData{
+//            result in
+////            do {
+//            debugPrint("All Response Info: \(result)")
+//
+//            if let data = result.result.value,let utf8Text = String(data: data, encoding: .utf8) {
+//            print("Data: \(utf8Text)")
+//            }
+//                let decoder = JSONDecoder()
+//                decoder.keyDecodingStrategy = .convertFromSnakeCase
+//                let listData = try decoder.decode(PostList.self, from: result.data!)
+//                if self.text.isEmpty{
+//                    for i in 0...7{
+//                        let element = listData.list[i]
+//                        self.text.append(element.name)}}
+//                else{
+//                    for i in 0...7{
+//                        let element = listData.list[i]
+//                        self.text[i]=element.name}
+//                }
+//            }
+//            catch { print(error) }
         }
     }
     
@@ -90,12 +104,16 @@ extension SecViewController :UITableViewDelegate,UITableViewDataSource{
         //        cell.textLabel?.textColor = UIColor.black
         //        cell.backgroundView?.backgroundColor = UIColor.blue
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SecTableCell.identifierString, for: indexPath)as? SecTableCell else { return UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: title) }
-        cell.config(text: text[indexPath.row], image: self.source.departmentGroup[indexPath.row].departmentImage)
+        if(indexPath.row <= text.count - 1){
+            cell.config(text: text[indexPath.row], image: self.source.departmentGroup[indexPath.row].departmentImage)
+        }
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
-        tapped(mes: source.departmentGroup[indexPath.row].departmentName)
+        if(indexPath.row <= text.count - 1){
+            tapped(mes: source.departmentGroup[indexPath.row].departmentName)
+        }
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return source.departmentGroup.count

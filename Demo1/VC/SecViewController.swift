@@ -16,6 +16,7 @@ class SecViewController: UIViewController{
     let header = MJRefreshNormalHeader()
     var text : [String] = []
     var tabRefreshDelegate : TabbarRefreshDelegate?
+    var dic : Dictionary<String , AnyObject> = [:]
     @objc func tapped(mes : String){
         let des = MesViewController()
         des.message = mes
@@ -65,8 +66,10 @@ class SecViewController: UIViewController{
     }
     func getNetText(){
         Alamofire.request("https://httpbin.org/get", parameters: ["foo":"bar"]).responseJSON { response in
-            if let dic = response.result.value as? Dictionary<String, Any>{
+            if let dic = response.result.value as? Dictionary<String, AnyObject>{
                 print("字典: \(dic)")
+                self.dic = dic
+                print("index:\(dic.count)")
         }
 //        Alamofire.request("https://httpbin.org/get", parameters: ["foo":"bar"]).responseData{
 //            result in
@@ -104,14 +107,14 @@ extension SecViewController :UITableViewDelegate,UITableViewDataSource{
         //        cell.textLabel?.textColor = UIColor.black
         //        cell.backgroundView?.backgroundColor = UIColor.blue
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SecTableCell.identifierString, for: indexPath)as? SecTableCell else { return UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: title) }
-        if(indexPath.row <= text.count - 1){
-            cell.config(text: text[indexPath.row], image: self.source.departmentGroup[indexPath.row].departmentImage)
+        if(indexPath.row <= self.source.departmentGroup.count - 1){
+            cell.config(text: self.source.departmentGroup[indexPath.row].departmentName, image: self.source.departmentGroup[indexPath.row].departmentImage)
         }
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
-        if(indexPath.row <= text.count - 1){
+        if(indexPath.row <= self.source.departmentGroup.count - 1){
             tapped(mes: source.departmentGroup[indexPath.row].departmentName)
         }
     }
@@ -147,6 +150,7 @@ extension SecViewController :UITableViewDelegate,UITableViewDataSource{
 }
 extension SecViewController: TabbarRefreshDelegate {
     func refresh() {
+        print("刷新？")
         table.mj_header?.beginRefreshing()
     }
 }

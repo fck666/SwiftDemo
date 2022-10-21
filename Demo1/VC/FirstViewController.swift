@@ -68,11 +68,13 @@ class FirstViewController: UIViewController {
     @objc func tapPresent(){
         let des = NewViewController()
         des.message = "传递的信息"
+        des.modalPresentationStyle = .fullScreen
         self.present(des, animated: true, completion: nil)
     }
     @objc func tapNotification(){
         let des = NewViewController()
         des.message = "传递的信息"
+        des.modalPresentationStyle = .overFullScreen
         self.present(des, animated: true, completion: nil)
     }
     @objc func tapPush(){

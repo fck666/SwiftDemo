@@ -37,7 +37,7 @@ class FourthViewController: UIViewController {
     }()
     let table = UITableView(frame: CGRect.zero, style: UITableView.Style.plain)
     func setUpTable(){
-        table.frame = CGRect(x: 0, y: 50, width: view.bounds.width/4+1, height: view.bounds.height)
+        table.frame = CGRect(x: 0, y: 0, width: view.bounds.width/4+1, height: view.bounds.height)
         table.delegate = self
         table.dataSource = self
         table.register(FourthTableCell.self, forCellReuseIdentifier: FourthTableCell.identifierString)
